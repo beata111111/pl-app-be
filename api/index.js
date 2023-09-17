@@ -16,6 +16,12 @@ const uri = "mongodb+srv://beata111:wirowiro@cluster0.keyagdk.mongodb.net/?retry
 mongodb.MongoClient.connect(uri, (err, client) => {
   let db = client.db("languages_app_new");
 
+  app.get("/", (req, res) => {
+    res.type("text/plain");
+    res.status(200);
+    res.send("Hallo");
+  });
+
   // auth
   app.post("/api/create-user", auth.createUser(db));
   app.post("/api/login-user", auth.loginUser(db));
