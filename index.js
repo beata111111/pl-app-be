@@ -21,7 +21,6 @@ mongodb.MongoClient.connect(uri, (err, client) => {
     res.status(200);
     res.send("Hallo");
   });
-
   app.get('/home', (req, res) => {
     res.status(200).json('Welcome, your app is working well');
   })
