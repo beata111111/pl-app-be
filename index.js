@@ -13,14 +13,21 @@ app.use(require("body-parser").json());
 
 const uri = "mongodb+srv://beata111:wirowiro@cluster0.keyagdk.mongodb.net/?retryWrites=true&w=majority";
 
+console.log('aaa');
 mongodb.MongoClient.connect(uri, (err, client) => {
+  console.log('bbb');
+
   let db = client.db("languages_app_new");
+
+  console.log('ccc');
+
 
   app.get("/", (req, res) => {
     res.type("text/plain");
     res.status(200);
     res.send("Hallo");
   });
+
   // app.get('/home', (req, res) => {
   //   res.status(200).json('Welcome, your app is working well');
   // })
