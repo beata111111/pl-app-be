@@ -46,7 +46,7 @@ mongodb.MongoClient.connect(uri, (err, client) => {
   // });
 
   // listen for requests
-  app.listen(process.env.PORT || 5678, () => {
+  app.listen(5678, () => {
     console.log("Your app is listening on port ", process.env.PORT || 5678);
   });
 });
