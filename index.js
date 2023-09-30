@@ -31,7 +31,7 @@ mongodb.MongoClient.connect(uri, (err, client) => {
 
   // user-category-status
   app.get("/api/get-category-status", userCategoryStatus.getUserCategoryStatus(db));
-  app.post("/api/update-category-status", userCategoryStatus.updateUserCategoryStatus(db));
+  app.post("/api/update-category-status", userCategoryStatus.updateUserCategoryStatus(client, db));
 
   // words
   app.get("/api/get-words", words.getWords(db));
