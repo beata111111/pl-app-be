@@ -108,7 +108,7 @@ exports.createInitialCategoryStatus = () => {
           variant_id: variant,
           enabled: lev.level === '1' && variant === 'a',
           result: 0,
-          timeAdjustedResult: 0,
+          previousResult: 0,
           date: 0,
         }
         newLevel.variants.push(newVariant);

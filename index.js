@@ -3,13 +3,12 @@ const mongodb = require("mongodb");
 
 const auth = require('./routes/auth');
 const user = require('./routes/user');
-const userCategoryStatus = require('./routes/user-category-status');
+const category = require('./routes/category');
 const words = require('./routes/words');
 
 const app = express();
 app.use(require("cors")());
 app.use(require("body-parser").json());
-
 
 const uri = "mongodb+srv://beata111:wirowiro@cluster0.keyagdk.mongodb.net/?retryWrites=true&w=majority";
 
@@ -19,7 +18,7 @@ mongodb.MongoClient.connect(uri, (err, client) => {
   app.get("/", (req, res) => {
     res.type("text/plain");
     res.status(200);
-    res.send("Hallo");
+    res.send("Hallo zusammen");
   });
 
   // auth
@@ -30,8 +29,8 @@ mongodb.MongoClient.connect(uri, (err, client) => {
   app.get("/api/get-user", user.getUser(db));
 
   // user-category-status
-  app.get("/api/get-category-status", userCategoryStatus.getUserCategoryStatus(db));
-  app.post("/api/update-category-status", userCategoryStatus.updateUserCategoryStatus(client, db));
+  app.get("/api/get-category-status", category.geCategory(db));
+  app.post("/api/update-category-status", category.updateCategory(client, db));
 
   // words
   app.get("/api/get-words", words.getWords(db));
