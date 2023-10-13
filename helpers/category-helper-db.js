@@ -23,8 +23,14 @@ exports.updateCategoryDB = (category, body) => {
         }
 
         if (v.variant_id === variant_id) {
+          console.log("variant", v);
+
           const previousResultTimeAdjusted = getPreviousTimeAdjustedResult(v, j);
+          console.log("getPreviousTimeAdjustedResult", previousResultTimeAdjusted);
+
           pointsDelta = result - previousResultTimeAdjusted;
+          console.log("pointsDelta", pointsDelta);
+
           v.previousResult = previousResultTimeAdjusted;
           v.result = result;
           v.date = timeHelper.getDate();
