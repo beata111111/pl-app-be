@@ -7,10 +7,6 @@ exports.adjustCategory = (category) => {
         let variantsEnabled = true;
 
         level.variants.forEach((v, j) => {
-            if (!v.result) {
-                adjustedVariants.push(v); return;
-            }
-
             const differenceDays = timeHelper.getDateDifference(v.date);
             if (!differenceDays) {
                 adjustedVariants.push(v); return;
