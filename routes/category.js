@@ -43,17 +43,27 @@ exports.updateCategory = (client, db) => {
       );
     }
 
+    async function saveRecord(session, points, name) {
+      await db.collection("records").updateOne(
+          { id },
+          { $set: { points, id, name } },
+          { session, upsert: true }
+      );
+    }
+
     const user = await db.collection("users").findOne({ id });
     const category = await db.collection(`z_${id}`).findOne({ category_id });
 
     const [dbCategoryUpdate, pointDelta] = categoryHelperDB.updateCategoryDB(category, req.body);
-    const userPointsUpdate = { previousPoints: user.points, points: user.points + pointDelta };
+    const newPoints = user.points + pointDelta
+    const userPointsUpdate = { previousPoints: user.points, points: newPoints };
 
     const session = client.startSession();
     try {
       session.startTransaction(dbConfig.transactionOptions);
       await saveUser(session, userPointsUpdate);
       await saveCategory(session, dbCategoryUpdate);
+      await saveRecord(session, newPoints, user.name);
       await session.commitTransaction();
       console.log('Transaction successfully committed.');
 

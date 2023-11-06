@@ -5,6 +5,7 @@ const auth = require('./routes/auth');
 const user = require('./routes/user');
 const category = require('./routes/category');
 const words = require('./routes/words');
+const records = require('./routes/records');
 
 const app = express();
 app.use(require("cors")());
@@ -41,6 +42,9 @@ mongodb.MongoClient.connect(uri, (err, client) => {
 
   // words
   app.get("/api/get-words", words.getWords(db));
+
+  // records
+  app.get("/api/get-records", records.getRecords(db));
 
   app.use((req, res) => {
     res.type("text/plain");

@@ -44,7 +44,7 @@ exports.createUser = (db) => {
 
     await db.createCollection(`z_${userId}`);
     await db.collection(`z_${userId}`).insertMany(dataHelper.createInitialCategoryStatus());
-    await db.collection('users').insertOne(dataHelper.newUserObj(userId));
+    await db.collection('users').insertOne(dataHelper.newUserObj(userId, name));
 
     return res.json({
       token: jsonwebtoken.sign({ userName: name, userId }, JWT_SECRET),

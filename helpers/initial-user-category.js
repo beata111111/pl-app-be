@@ -1,6 +1,7 @@
-exports.newUserObj = (id) => {
+exports.newUserObj = (id, name) => {
   return {
     id,
+    name,
     points: 0,
     previousPoints: 0,
   }
