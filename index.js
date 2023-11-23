@@ -35,6 +35,7 @@ mongodb.MongoClient.connect(uri, (err, client) => {
 
   // user
   app.get("/api/get-user", user.getUser(db));
+  app.post("/api/update-user", user.updateUser(db));
 
   // user-category-status
   app.get("/api/get-category-status", category.geCategory(db));
