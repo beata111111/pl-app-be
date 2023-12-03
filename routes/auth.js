@@ -98,3 +98,19 @@ exports.routeGuard = (req, res) => {
     return res.status(401).json({ error: "Not Authorized" });
   }
 }
+
+exports.getId = (req) => {
+  const { authorization } = req.headers;
+  if (!authorization) {
+    return null;
+  }
+
+  const token = authorization.split(" ")[1];
+
+  try {
+    const { userId } = jsonwebtoken.verify(token, JWT_SECRET);
+    return userId;
+  } catch (error) {
+    return null;
+  }
+}
